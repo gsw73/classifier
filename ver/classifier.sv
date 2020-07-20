@@ -198,7 +198,7 @@ always_ff @( posedge clk )
 // for port A since it should always be "read" for lookup from main data.
 // path.
 
-always @( posedge clk )
+always_ff @( posedge clk )
     if ( !rst_n )
     begin
         ht_t1_addra_q <= '0;
@@ -219,7 +219,7 @@ always @( posedge clk )
 //
 // Avoiding reset flops here in data path per Xilinx.
 
-always @( posedge clk )
+always_ff @( posedge clk )
 begin
     ht_t1_douta_q <= ht_t1_douta;
     ht_t2_douta_q <= ht_t2_douta;
@@ -232,7 +232,7 @@ end
 //
 // From hash valid to flopped T1/T2 read data valid on port A.
 
-always @( posedge clk )
+always_ff @( posedge clk )
     if ( !rst_n )
     begin
         hash_a_vld_q <= 1'b0;
