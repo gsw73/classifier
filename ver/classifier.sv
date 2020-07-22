@@ -107,7 +107,10 @@ logic [ PIO_NBITS - 1:0 ] mem_dout_hasht2;
 logic pio_mem_rd_wr;
 logic [ CLASSIFIER_PIO_MEM_ADDR_WIDTH - 1:0 ] pio_mem_addr;
 logic [ PIO_NBITS - 1:0 ] pio_mem_din;
+logic [PIO_NBITS-1:0] pio_rdata;
 
+logic pio_rvalid;
+logic pio_ack;
 logic pio_mem_req_value;
 logic mem_pio_ack_value;
 logic [ VAL_MEM_WIDTH - 1:0 ] mem_dout_value;
@@ -458,7 +461,7 @@ pio2reg_bus
 u_pio2reg_bus
 (
     .clk( clk ),
-    .rst_n( rst_n ),
+    .reset_n( rst_n ),
 
     // from central PIO
     .pio_start,
@@ -531,40 +534,40 @@ u_class_hasht_arb_1
 
 class_pio u_class_pio
 (
-    clk,
-    rst_n,
+    .clk,
+    .rst_n,
 
-    clk_div,
+    .clk_div,
 
-    reg_addr,
-    reg_din,
-    reg_rd,
-    reg_wr,
-    mem_bs,
-    reg_bs,
+    .reg_addr,
+    .reg_din,
+    .reg_rd,
+    .reg_wr,
+    .mem_bs,
+    .reg_bs,
 
-    pio_ack,
-    pio_rvalid,
-    pio_error(),
-    pio_invld(),
-    pio_rdata,
+    .pio_ack,
+    .pio_rvalid,
+    .pio_error(),
+    .pio_invld(),
+    .pio_rdata,
 
-    pio_mem_req_value,
-    mem_pio_ack_value,
-    mem_dout_value,
-    pio_value_din,
+    .pio_mem_req_value,
+    .mem_pio_ack_value,
+    .mem_dout_value,
+    .pio_value_din,
 
-    pio_mem_req_hasht1,
-    mem_pio_ack_hasht1,
-    mem_dout_hasht1,
+    .pio_mem_req_hasht1,
+    .mem_pio_ack_hasht1,
+    .mem_dout_hasht1,
 
-    pio_mem_req_hasht2,
-    mem_pio_ack_hasht2,
-    mem_dout_hasht2,
+    .pio_mem_req_hasht2,
+    .mem_pio_ack_hasht2,
+    .mem_dout_hasht2,
 
-    pio_mem_rd_wr,
-    pio_mem_addr,
-    pio_mem_din
+    .pio_mem_rd_wr,
+    .pio_mem_addr,
+    .pio_mem_din
 );
 
 // =======================================================================
@@ -659,4 +662,4 @@ u_value_mem
     .doutb( mem_dout_value )
 );
 
-endmodule
+endmodule : classifier

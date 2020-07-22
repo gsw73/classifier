@@ -1,5 +1,6 @@
-module svtb_top();
+module svtb_top
     import class_pkg::*;
+    ();
     timeunit 1ns/1ps;
 
     logic clk;
@@ -26,7 +27,7 @@ program automatic main
     timeunit 1ns/1ps;
 
     initial begin
-        $display("%t program main begin");
+        $display("%t program main begin", $time);
         repeat(150) @sig_h.cb;
     end
 
